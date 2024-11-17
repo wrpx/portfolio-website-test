@@ -1,7 +1,6 @@
-import { FC } from 'react';
 import { Link } from 'react-router-dom';
 
-const Hero: FC = () => {
+const Hero = () => {
   return (
     <section className="relative min-h-[calc(100vh-70px)] flex items-center py-16 overflow-hidden">
       {/* Background with gradient and dots */}

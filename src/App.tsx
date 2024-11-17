@@ -1,12 +1,17 @@
-import { FC } from 'react';
-import Layout from './components/Layout';
 import AppRoutes from './routes';
+import Layout from './components/Layout';
+import { ThemeProvider } from './context/ThemeContext';
+import { AppProvider } from './context/AppContext';
 
-const App: FC = () => {
+const App = () => {
   return (
-    <Layout>
-      <AppRoutes />
-    </Layout>
+    <ThemeProvider>
+      <AppProvider>
+        <Layout>
+          <AppRoutes />
+        </Layout>
+      </AppProvider>
+    </ThemeProvider>
   );
 };
 

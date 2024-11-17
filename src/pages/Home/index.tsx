@@ -1,7 +1,6 @@
-import { FC } from 'react';
-import Hero from '@/components/Hero';
+import Hero from '../../components/Hero';
 
-const Home: FC = () => {
+const Home = () => {
   return (
     <div className="min-h-[calc(100vh-70px)]">
       <Hero />

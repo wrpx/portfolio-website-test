@@ -1,6 +1,5 @@
-import { FC } from 'react';
 
-const Footer: FC = () => {
+const Footer = () => {
   return (
     <footer className="bg-section-bg py-8">
       <div className="container mx-auto px-4">

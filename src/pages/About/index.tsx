@@ -1,6 +1,5 @@
-import { FC } from 'react';
 
-const About: FC = () => {
+const About = () => {
   return (
     <div className="py-16">
       <div className="container mx-auto px-4">

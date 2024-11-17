@@ -1,6 +1,6 @@
-import { FC, useState, FormEvent } from 'react';
+import  { useState, FormEvent } from 'react';
 
-const Contact: FC = () => {
+const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',

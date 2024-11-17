@@ -1,4 +1,3 @@
-import { FC } from 'react';
 
 interface Project {
   id: number;
@@ -39,7 +38,7 @@ const projects: Project[] = [
   }
 ];
 
-const Projects: FC = () => {
+const Projects = () => {
   return (
     <div className="py-16">
       <div className="container mx-auto px-4">
