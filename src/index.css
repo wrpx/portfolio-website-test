@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-text antialiased;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply px-6 py-3 rounded-lg font-medium transition-all duration-300 relative overflow-hidden;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-white hover:bg-secondary shadow-soft hover:shadow-lg 
+    hover:-translate-y-0.5 active:translate-y-0;
+  }
+
+  .btn-secondary {
+    @apply bg-white text-primary border-2 border-primary hover:bg-primary hover:text-white
+    hover:-translate-y-0.5 active:translate-y-0 shadow-soft hover:shadow-lg;
+  }
+
+  .card {
+    @apply bg-white rounded-lg shadow-soft hover:shadow-lg transition-all duration-300
+    hover:-translate-y-1;
+  }
+
+  .input {
+    @apply w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none
+    focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-300;
+  }
+
+  .section-title {
+    @apply text-3xl md:text-4xl font-bold text-text text-center mb-8 relative
+    after:content-[''] after:absolute after:-bottom-3 after:left-1/2 after:-translate-x-1/2
+    after:w-20 after:h-1 after:bg-primary/20 after:rounded-full;
+  }
+}
+
+@layer utilities {
+  .container {
+    @apply mx-auto;
+  }
+
+  .text-shadow {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary;
+  }
+
+  .bg-glass {
+    @apply bg-white/80 backdrop-blur-md;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 0.8s forwards;
+}
