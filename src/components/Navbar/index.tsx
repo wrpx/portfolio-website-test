@@ -78,7 +78,7 @@ const NavLinks = () => {
           key={to}
           to={to}
           className={`
-            text-gray-800 hover:text-primary
+            text-gray-200 hover:text-primary
             ${location.pathname === to ? "text-primary font-semibold" : ""}
           `}
         >
