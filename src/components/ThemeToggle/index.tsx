@@ -63,7 +63,7 @@ const ThemeToggle = () => {
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-48 rounded-lg py-2 bg-white dark:bg-gray-800 shadow-lg ring-1 ring-black ring-opacity-5 z-50">
+        <div className="absolute right-0 mt-2 w-48 rounded-lg py-2 bg-white dark:bg-gray-800 shadow-lg dark:shadow-xl ring-1 ring-black/10 dark:ring-white/10 z-50">
           <div className="px-2 py-2">
             <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase mb-2 px-2">
               ธีม

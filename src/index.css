@@ -12,6 +12,10 @@
   body {
     @apply bg-background dark:bg-background-dark text-text dark:text-text-dark antialiased;
   }
+  
+  *, ::before, ::after {
+    @apply transition-colors duration-300;
+  }
 }
 
 @layer components {
@@ -43,7 +47,7 @@
   .section-title {
     @apply text-3xl md:text-4xl font-bold text-text dark:text-text-dark text-center mb-8 relative
     after:content-[''] after:absolute after:-bottom-3 after:left-1/2 after:-translate-x-1/2
-    after:w-20 after:h-1 after:bg-primary/20 after:rounded-full;
+    after:w-20 after:h-1 after:bg-primary/20 dark:after:bg-primary/40 after:rounded-full;
   }
 }
 
@@ -54,6 +58,14 @@
 
   .text-shadow {
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .text-shadow-light {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  }
+  
+  .text-shadow-dark {
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.15);
   }
 
   .text-gradient {
@@ -67,6 +79,10 @@
 
 .dark .bg-dots-lg {
   @apply bg-gradient-dots-dark;
+}
+
+.dark .theme-transition {
+  @apply transition-all duration-500;
 }
 
 @keyframes fadeInUp {

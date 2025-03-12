@@ -31,11 +31,9 @@ const Navbar = () => {
       className={`fixed w-full z-50 transition-all duration-300 ${
         isScrolled 
           ? (isDarkMode 
-              ? "bg-gray-900/90 backdrop-blur-md shadow-md py-2" 
-              : "bg-white/90 backdrop-blur-md shadow-md py-2")
-          : (isDarkMode 
-              ? "bg-transparent py-4" 
-              : "bg-transparent py-4")
+              ? "bg-gray-900/95 backdrop-blur-md shadow-md py-2" 
+              : "bg-white/95 backdrop-blur-md shadow-md py-2")
+          : "bg-transparent py-4"
       }`}
     >
       <div className="container mx-auto px-4">
@@ -43,7 +41,9 @@ const Navbar = () => {
           <Link 
             to="/" 
             className={`text-2xl font-bold transition-colors duration-300 ${
-              isDarkMode ? "text-white" : "text-primary"
+              isScrolled 
+                ? (isDarkMode ? "text-white" : "text-primary") 
+                : (isDarkMode ? "text-white text-shadow-light" : "text-primary text-shadow-dark")
             }`}
           >
             <span className="relative group">
@@ -73,15 +73,27 @@ const Navbar = () => {
               >
                 <span className={`block w-full h-0.5 transform transition-all duration-300 ${
                   isMenuOpen ? "rotate-45 translate-y-2" : ""
-                } ${isDarkMode ? "bg-white" : (isScrolled ? "bg-text" : "bg-primary")}`}></span>
+                } ${
+                  isScrolled 
+                    ? (isDarkMode ? "bg-white" : "bg-text") 
+                    : (isDarkMode ? "bg-white" : "bg-primary")
+                }`}></span>
                 
                 <span className={`block w-full h-0.5 transition-all duration-300 ${
                   isMenuOpen ? "opacity-0" : "opacity-100"
-                } ${isDarkMode ? "bg-white" : (isScrolled ? "bg-text" : "bg-primary")}`}></span>
+                } ${
+                  isScrolled 
+                    ? (isDarkMode ? "bg-white" : "bg-text") 
+                    : (isDarkMode ? "bg-white" : "bg-primary")
+                }`}></span>
                 
                 <span className={`block w-full h-0.5 transform transition-all duration-300 ${
                   isMenuOpen ? "-rotate-45 -translate-y-2" : ""
-                } ${isDarkMode ? "bg-white" : (isScrolled ? "bg-text" : "bg-primary")}`}></span>
+                } ${
+                  isScrolled 
+                    ? (isDarkMode ? "bg-white" : "bg-text") 
+                    : (isDarkMode ? "bg-white" : "bg-primary")
+                }`}></span>
               </div>
             </button>
           </div>
@@ -97,7 +109,7 @@ const Navbar = () => {
           <div className={`py-4 rounded-lg ${
             isDarkMode 
               ? "bg-gray-900/95 backdrop-blur-md shadow-md" 
-              : (isScrolled ? "bg-white shadow-md" : "bg-gray-900/80 backdrop-blur-md")
+              : "bg-white/95 backdrop-blur-md shadow-md"
           }`}>
             <NavLinks isMobile={true} isScrolled={isScrolled} isDarkMode={isDarkMode} />
           </div>
@@ -125,11 +137,13 @@ const NavLinks = ({ isMobile = false, isScrolled = false, isDarkMode = false }) 
           className={`
             relative group ${isMobile ? "py-2" : ""}
             ${location.pathname === to 
-              ? `font-semibold ${isDarkMode ? "text-primary" : "text-primary"}` 
-              : isDarkMode
-                ? `${isScrolled || isMobile ? "text-gray-300" : "text-white"} hover:text-primary transition-colors duration-300` 
-                : `${isScrolled ? "text-text" : "text-white"} hover:text-primary transition-colors duration-300`
-            }
+              ? `font-semibold text-primary` 
+              : isScrolled
+                ? (isDarkMode ? "text-gray-200 hover:text-primary" : "text-gray-700 hover:text-primary")
+                : (isDarkMode 
+                    ? "text-white hover:text-primary text-shadow-light" 
+                    : "text-gray-800 hover:text-primary text-shadow-dark")
+            } transition-colors duration-300
           `}
         >
           {label}

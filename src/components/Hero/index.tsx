@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom';
 import { useEffect, useRef } from 'react';
+import { useApp } from '../../context/AppContext';
 
 const Hero = () => {
+  const { isDarkMode } = useApp();
   const containerRef = useRef<HTMLDivElement>(null);
   const mouseEffectRef = useRef<HTMLDivElement>(null);
 
@@ -51,21 +53,27 @@ const Hero = () => {
   return (
     <section className="relative min-h-[calc(100vh-70px)] flex items-center py-16 overflow-hidden">
       {/* Background with gradient and dots */}
-      <div className="absolute inset-0 bg-gradient-to-b from-white via-section-bg to-section-bg opacity-70"></div>
+      <div className={`absolute inset-0 ${
+        isDarkMode
+          ? "bg-gradient-to-b from-background-dark via-background-dark to-section-bg-dark opacity-80"
+          : "bg-gradient-to-b from-white via-section-bg to-section-bg opacity-70"
+      }`}></div>
       <div className="absolute inset-0 bg-dots-lg opacity-30"></div>
       
       {/* Mouse effect */}
       <div 
         ref={mouseEffectRef}
-        className="absolute w-96 h-96 rounded-full bg-primary pointer-events-none -translate-x-1/2 -translate-y-1/2 filter blur-3xl opacity-0 transition-opacity duration-1000"
+        className={`absolute w-96 h-96 rounded-full pointer-events-none -translate-x-1/2 -translate-y-1/2 filter blur-3xl opacity-0 transition-opacity duration-1000 ${
+          isDarkMode ? "bg-primary/30" : "bg-primary/20"
+        }`}
       ></div>
       
       {/* Floating shapes */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-20 left-10 w-20 h-20 bg-primary/10 rounded-full animate-float delay-100"></div>
-        <div className="absolute bottom-20 right-10 w-32 h-32 bg-secondary/10 rounded-full animate-float delay-300"></div>
-        <div className="absolute top-1/3 right-1/4 w-16 h-16 bg-primary/5 rounded-full animate-float delay-500"></div>
-        <div className="absolute bottom-1/3 left-1/4 w-24 h-24 bg-secondary/5 rounded-full animate-float delay-700"></div>
+        <div className={`absolute top-20 left-10 w-20 h-20 ${isDarkMode ? "bg-primary/15" : "bg-primary/10"} rounded-full animate-float delay-100`}></div>
+        <div className={`absolute bottom-20 right-10 w-32 h-32 ${isDarkMode ? "bg-secondary/15" : "bg-secondary/10"} rounded-full animate-float delay-300`}></div>
+        <div className={`absolute top-1/3 right-1/4 w-16 h-16 ${isDarkMode ? "bg-primary/10" : "bg-primary/5"} rounded-full animate-float delay-500`}></div>
+        <div className={`absolute bottom-1/3 left-1/4 w-24 h-24 ${isDarkMode ? "bg-secondary/10" : "bg-secondary/5"} rounded-full animate-float delay-700`}></div>
         
         {/* Decorative lines */}
         <div className="absolute top-40 left-0 w-1/4 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent"></div>
@@ -87,7 +95,7 @@ const Hero = () => {
             </div>
 
             <div className="animate-slideInRight">
-              <p className="text-xl md:text-2xl text-light-text mb-8 relative">
+              <p className="text-xl md:text-2xl text-light-text dark:text-light-text-dark mb-8 relative">
                 <span className="relative inline-block">
                   Full Stack Developer & UI/UX Designer
                   <span className="absolute -bottom-2 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent"></span>
@@ -120,7 +128,7 @@ const Hero = () => {
                 href="https://github.com" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-light-text hover:text-primary transition-colors duration-300 transform hover:scale-110"
+                className="text-light-text dark:text-light-text-dark hover:text-primary transition-colors duration-300 transform hover:scale-110"
                 aria-label="GitHub"
               >
                 <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -131,7 +139,7 @@ const Hero = () => {
                 href="https://linkedin.com" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-light-text hover:text-primary transition-colors duration-300 transform hover:scale-110"
+                className="text-light-text dark:text-light-text-dark hover:text-primary transition-colors duration-300 transform hover:scale-110"
                 aria-label="LinkedIn"
               >
                 <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -142,7 +150,7 @@ const Hero = () => {
                 href="https://twitter.com" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-light-text hover:text-primary transition-colors duration-300 transform hover:scale-110"
+                className="text-light-text dark:text-light-text-dark hover:text-primary transition-colors duration-300 transform hover:scale-110"
                 aria-label="Twitter"
               >
                 <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -156,8 +164,8 @@ const Hero = () => {
 
       {/* Scroll indicator */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <div className="w-6 h-10 border-2 border-primary/30 rounded-full p-1 flex justify-center">
-          <div className="w-1.5 h-3 bg-primary/30 rounded-full animate-float"></div>
+        <div className={`w-6 h-10 border-2 ${isDarkMode ? 'border-primary/40' : 'border-primary/30'} rounded-full p-1 flex justify-center`}>
+          <div className={`w-1.5 h-3 ${isDarkMode ? 'bg-primary/40' : 'bg-primary/30'} rounded-full animate-float`}></div>
         </div>
       </div>
     </section>
