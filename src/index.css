@@ -10,7 +10,7 @@
   }
 
   body {
-    @apply bg-background dark:bg-background-dark text-text dark:text-text-dark antialiased;
+    @apply bg-background dark:bg-gray-900 text-text dark:text-gray-100 antialiased;
   }
   
   *, ::before, ::after {
@@ -34,8 +34,8 @@
   }
 
   .card {
-    @apply bg-card-bg dark:bg-card-bg-dark rounded-lg shadow-soft dark:shadow-soft-dark hover:shadow-lg transition-all duration-300
-    hover:-translate-y-1 border border-card-border/20 dark:border-card-border-dark/20;
+    @apply bg-white dark:bg-gray-800 rounded-lg shadow-soft dark:shadow-soft-dark hover:shadow-lg transition-all duration-300
+    hover:-translate-y-1 border border-gray-100/50 dark:border-gray-700/50;
   }
 
   .input {
@@ -45,7 +45,7 @@
   }
 
   .section-title {
-    @apply text-3xl md:text-4xl font-bold text-text dark:text-text-dark text-center mb-8 relative
+    @apply text-3xl md:text-4xl font-bold text-text dark:text-white text-center mb-8 relative
     after:content-[''] after:absolute after:-bottom-3 after:left-1/2 after:-translate-x-1/2
     after:w-20 after:h-1 after:bg-primary/20 dark:after:bg-primary/40 after:rounded-full;
   }
@@ -65,7 +65,7 @@
   }
   
   .text-shadow-dark {
-    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.15);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
   }
 
   .text-gradient {
@@ -83,6 +83,22 @@
 
 .dark .theme-transition {
   @apply transition-all duration-500;
+}
+
+.dark section {
+  @apply bg-gray-900 text-gray-100;
+}
+
+.dark .bg-white {
+  @apply bg-gray-900;
+}
+
+.dark .bg-card-bg {
+  @apply bg-gray-800;
+}
+
+.dark .text-light-text {
+  @apply text-gray-300;
 }
 
 @keyframes fadeInUp {

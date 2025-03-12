@@ -1,5 +1,38 @@
-import { useRef, useState, useEffect } from 'react';
-import { useApp } from '../../context/AppContext';
+import { useState, useEffect, useRef } from 'react';
+import { useApp } from '../../../context/AppContext';
+
+interface ThemeOptionProps {
+  value: string;
+  currentTheme: string;
+  onClick: () => void;
+  icon: React.ReactNode;
+  label: string;
+}
+
+const ThemeOption = ({ value, currentTheme, onClick, icon, label }: ThemeOptionProps) => {
+  const isActive = currentTheme === value;
+  
+  return (
+    <button
+      onClick={onClick}
+      className={`w-full flex items-center px-3 py-2 rounded-md ${
+        isActive 
+          ? 'bg-primary/10 text-primary' 
+          : 'hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300'
+      }`}
+    >
+      <span className={`mr-2 ${isActive ? 'text-primary' : ''}`}>
+        {icon}
+      </span>
+      <span className="flex-1 text-left">{label}</span>
+      {isActive && (
+        <svg className="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+        </svg>
+      )}
+    </button>
+  );
+};
 
 const ThemeToggle = () => {
   const { state, setTheme, isDarkMode } = useApp();
@@ -129,44 +162,6 @@ const ThemeToggle = () => {
         </div>
       )}
     </div>
-  );
-};
-
-interface ThemeOptionProps {
-  value: string;
-  currentTheme: string;
-  onClick: () => void;
-  icon: React.ReactNode;
-  label: string;
-}
-
-const ThemeOption = ({ value, currentTheme, onClick, icon, label }: ThemeOptionProps) => {
-  const isActive = value === currentTheme;
-  
-  return (
-    <button
-      onClick={onClick}
-      className={`
-        w-full flex items-center px-2 py-2 text-sm rounded-md
-        ${isActive 
-          ? 'bg-primary/10 text-primary font-medium' 
-          : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
-        }
-      `}
-    >
-      <span className="mr-2">{icon}</span>
-      {label}
-      {isActive && (
-        <svg className="w-4 h-4 ml-auto text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path 
-            strokeLinecap="round" 
-            strokeLinejoin="round" 
-            strokeWidth={2} 
-            d="M5 13l4 4L19 7" 
-          />
-        </svg>
-      )}
-    </button>
   );
 };
 

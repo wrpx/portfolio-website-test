@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { useApp } from "../../context/AppContext";
-import ThemeToggle from "../ThemeToggle";
+import ThemeToggle from "../../ui/ThemeToggle";
+import { useApp } from "../../../context/AppContext";
 
 const Navbar = () => {
   const location = useLocation();
@@ -119,7 +119,13 @@ const Navbar = () => {
   );
 };
 
-const NavLinks = ({ isMobile = false, isScrolled = false, isDarkMode = false }) => {
+interface NavLinksProps {
+  isMobile?: boolean;
+  isScrolled?: boolean;
+  isDarkMode?: boolean;
+}
+
+const NavLinks = ({ isMobile = false, isScrolled = false, isDarkMode = false }: NavLinksProps) => {
   const location = useLocation();
   const links = [
     { to: "/", label: "Home" },
@@ -156,4 +162,4 @@ const NavLinks = ({ isMobile = false, isScrolled = false, isDarkMode = false }) 
   );
 };
 
-export default Navbar;
+export default Navbar; 

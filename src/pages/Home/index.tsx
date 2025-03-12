@@ -1,4 +1,4 @@
-import Hero from '../../components/Hero';
+import Hero from '../../components/sections/Hero';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { useApp } from '../../context/AppContext';
@@ -81,7 +81,7 @@ const Home = () => {
       <Hero />
       
       {/* Featured Projects Section */}
-      <section className="py-20 bg-section-bg dark:bg-section-bg-dark relative overflow-hidden">
+      <section className="py-20 bg-gray-50 dark:bg-gray-900 relative overflow-hidden">
         {/* ตกแต่งพื้นหลัง */}
         <div className="absolute inset-0 bg-dots-lg opacity-30"></div>
         <div className="absolute right-0 top-1/4 w-96 h-96 bg-primary/5 dark:bg-primary/10 rounded-full filter blur-3xl"></div>
@@ -92,7 +92,7 @@ const Home = () => {
             <h2 className="section-title text-4xl md:text-5xl font-bold mb-6">
               Featured Projects
             </h2>
-            <p className="text-light-text dark:text-light-text-dark text-lg max-w-2xl mx-auto">
+            <p className="text-gray-600 dark:text-gray-300 text-lg max-w-2xl mx-auto">
               Here are some of my recent projects that showcase my skills and experience in building modern, responsive, and user-friendly applications.
             </p>
           </div>
@@ -130,7 +130,7 @@ const Home = () => {
                   </div>
                   <div className="p-6">
                     <h3 className="text-xl font-bold mb-2 text-text dark:text-text-dark group-hover:text-primary transition-colors">{project.title}</h3>
-                    <p className="text-light-text dark:text-light-text-dark mb-4">{project.description}</p>
+                    <p className="text-gray-600 dark:text-gray-300 mb-4">{project.description}</p>
                     <div className="text-primary flex items-center font-medium group-hover:underline">
                       View Project
                       <svg className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -158,13 +158,13 @@ const Home = () => {
       </section>
       
       {/* Skills Section */}
-      <section className="py-20 bg-white dark:bg-background-dark">
+      <section className="py-20 bg-white dark:bg-gray-800">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center mb-16">
             <h2 className="section-title text-4xl md:text-5xl font-bold mb-6">
               My Skills
             </h2>
-            <p className="text-light-text dark:text-light-text-dark text-lg max-w-2xl mx-auto">
+            <p className="text-gray-600 dark:text-gray-300 text-lg max-w-2xl mx-auto">
               I specialize in building modern web applications using the latest technologies and best practices.
             </p>
           </div>
@@ -173,11 +173,11 @@ const Home = () => {
             {SKILLS.map((skill) => (
               <div 
                 key={skill.category}
-                className="p-8 bg-card-bg dark:bg-card-bg-dark rounded-xl shadow-soft dark:shadow-soft-dark hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border border-card-border/20 dark:border-card-border-dark/30"
+                className="p-8 bg-white dark:bg-gray-800 rounded-xl shadow-soft dark:shadow-soft-dark hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border border-gray-100/50 dark:border-gray-700/50"
               >
                 {skill.icon}
                 <h3 className="text-xl font-semibold text-primary mb-4">{skill.category}</h3>
-                <ul className="text-light-text dark:text-light-text-dark space-y-2">
+                <ul className="text-gray-600 dark:text-gray-300 space-y-2">
                   {skill.items.map((item) => (
                     <li key={item} className="flex items-center">
                       <svg className="w-4 h-4 mr-2 text-primary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -194,13 +194,13 @@ const Home = () => {
       </section>
       
       {/* Call To Action */}
-      <section className="py-16 bg-primary/5 dark:bg-primary/10 relative overflow-hidden">
+      <section className="py-16 bg-gray-50 dark:bg-gray-900 relative overflow-hidden">
         <div className="absolute inset-0 bg-dots-lg opacity-30"></div>
         
         <div className="container mx-auto px-4 relative">
-          <div className="max-w-4xl mx-auto bg-card-bg dark:bg-card-bg-dark rounded-2xl shadow-lg dark:shadow-lg p-10 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-text dark:text-text-dark mb-6">Ready to work together?</h2>
-            <p className="text-light-text dark:text-light-text-dark text-lg mb-8 max-w-2xl mx-auto">
+          <div className="max-w-4xl mx-auto bg-white dark:bg-gray-800 rounded-2xl shadow-lg dark:shadow-xl p-10 text-center">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-6">Ready to work together?</h2>
+            <p className="text-gray-600 dark:text-gray-300 text-lg mb-8 max-w-2xl mx-auto">
               Let's discuss how I can help bring your ideas to life. I'm always open to new projects and collaborations.
             </p>
             <Link 

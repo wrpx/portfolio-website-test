@@ -1,5 +1,5 @@
 import AppRoutes from "./routes";
-import Layout from "./components/Layout";
+import Layout from "./components/layout";
 import { AppProvider } from "./context/AppContext";
 
 const App = () => {
