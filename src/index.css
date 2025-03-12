@@ -10,7 +10,7 @@
   }
 
   body {
-    @apply bg-background text-text antialiased;
+    @apply bg-background dark:bg-background-dark text-text dark:text-text-dark antialiased;
   }
 }
 
@@ -20,27 +20,28 @@
   }
 
   .btn-primary {
-    @apply bg-primary text-white hover:bg-secondary shadow-soft hover:shadow-lg 
+    @apply bg-primary text-white hover:bg-secondary shadow-soft dark:shadow-soft-dark hover:shadow-lg 
     hover:-translate-y-0.5 active:translate-y-0;
   }
 
   .btn-secondary {
-    @apply bg-white text-primary border-2 border-primary hover:bg-primary hover:text-white
-    hover:-translate-y-0.5 active:translate-y-0 shadow-soft hover:shadow-lg;
+    @apply bg-white dark:bg-gray-800 text-primary border-2 border-primary hover:bg-primary hover:text-white
+    hover:-translate-y-0.5 active:translate-y-0 shadow-soft dark:shadow-soft-dark hover:shadow-lg;
   }
 
   .card {
-    @apply bg-white rounded-lg shadow-soft hover:shadow-lg transition-all duration-300
-    hover:-translate-y-1;
+    @apply bg-card-bg dark:bg-card-bg-dark rounded-lg shadow-soft dark:shadow-soft-dark hover:shadow-lg transition-all duration-300
+    hover:-translate-y-1 border border-card-border/20 dark:border-card-border-dark/20;
   }
 
   .input {
-    @apply w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none
-    focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-300;
+    @apply w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 focus:outline-none
+    focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-300
+    bg-white dark:bg-gray-800 text-text dark:text-text-dark;
   }
 
   .section-title {
-    @apply text-3xl md:text-4xl font-bold text-text text-center mb-8 relative
+    @apply text-3xl md:text-4xl font-bold text-text dark:text-text-dark text-center mb-8 relative
     after:content-[''] after:absolute after:-bottom-3 after:left-1/2 after:-translate-x-1/2
     after:w-20 after:h-1 after:bg-primary/20 after:rounded-full;
   }
@@ -60,8 +61,12 @@
   }
 
   .bg-glass {
-    @apply bg-white/80 backdrop-blur-md;
+    @apply bg-white/80 dark:bg-gray-900/80 backdrop-blur-md;
   }
+}
+
+.dark .bg-dots-lg {
+  @apply bg-gradient-dots-dark;
 }
 
 @keyframes fadeInUp {

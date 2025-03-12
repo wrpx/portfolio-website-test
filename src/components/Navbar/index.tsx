@@ -1,13 +1,16 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useApp } from "../../context/AppContext";
+import ThemeToggle from "../ThemeToggle";
 
 const Navbar = () => {
   const location = useLocation();
   const {
     state: { isMenuOpen },
     toggleMenu,
+    isDarkMode
   } = useApp();
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     if (isMenuOpen) {
@@ -15,46 +18,88 @@ const Navbar = () => {
     }
   }, [location.pathname]);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <nav className="fixed w-full z-50 bg-gray-900 shadow-lg">
+    <nav 
+      className={`fixed w-full z-50 transition-all duration-300 ${
+        isScrolled 
+          ? (isDarkMode 
+              ? "bg-gray-900/90 backdrop-blur-md shadow-md py-2" 
+              : "bg-white/90 backdrop-blur-md shadow-md py-2")
+          : (isDarkMode 
+              ? "bg-transparent py-4" 
+              : "bg-transparent py-4")
+      }`}
+    >
       <div className="container mx-auto px-4">
-        <div className="flex justify-between items-center h-16">
-          <Link to="/" className="text-2xl font-bold text-primary">
-            Portfolio
+        <div className="flex justify-between items-center">
+          <Link 
+            to="/" 
+            className={`text-2xl font-bold transition-colors duration-300 ${
+              isDarkMode ? "text-white" : "text-primary"
+            }`}
+          >
+            <span className="relative group">
+              Portfolio
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
+            </span>
           </Link>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
-            <NavLinks />
+            <NavLinks isScrolled={isScrolled} isDarkMode={isDarkMode} />
+            <ThemeToggle />
           </div>
 
           {/* Mobile Menu Button */}
-          <button
-            className="md:hidden"
-            onClick={toggleMenu}
-            aria-label="Toggle menu"
-          >
-            <div
-              className={`w-6 h-6 flex flex-col justify-around ${
-                isMenuOpen ? "open" : ""
-              }`}
+          <div className="md:hidden flex items-center space-x-4">
+            <ThemeToggle />
+            <button
+              className="flex items-center"
+              onClick={toggleMenu}
+              aria-label="Toggle menu"
             >
-              <span className="w-full h-0.5 bg-white transform transition-all"></span>
-              <span className="w-full h-0.5 bg-white transform transition-all"></span>
-              <span className="w-full h-0.5 bg-white transform transition-all"></span>
-            </div>
-          </button>
+              <div
+                className={`w-6 h-5 flex flex-col justify-between ${
+                  isMenuOpen ? "open" : ""
+                }`}
+              >
+                <span className={`block w-full h-0.5 transform transition-all duration-300 ${
+                  isMenuOpen ? "rotate-45 translate-y-2" : ""
+                } ${isDarkMode ? "bg-white" : (isScrolled ? "bg-text" : "bg-primary")}`}></span>
+                
+                <span className={`block w-full h-0.5 transition-all duration-300 ${
+                  isMenuOpen ? "opacity-0" : "opacity-100"
+                } ${isDarkMode ? "bg-white" : (isScrolled ? "bg-text" : "bg-primary")}`}></span>
+                
+                <span className={`block w-full h-0.5 transform transition-all duration-300 ${
+                  isMenuOpen ? "-rotate-45 -translate-y-2" : ""
+                } ${isDarkMode ? "bg-white" : (isScrolled ? "bg-text" : "bg-primary")}`}></span>
+              </div>
+            </button>
+          </div>
         </div>
 
         {/* Mobile Menu */}
         <div
           className={`
           md:hidden transition-all duration-300 overflow-hidden
-          ${isMenuOpen ? "max-h-64" : "max-h-0"}
+          ${isMenuOpen ? "max-h-64 opacity-100 mt-4" : "max-h-0 opacity-0"}
         `}
         >
-          <div className="py-4">
-            <NavLinks />
+          <div className={`py-4 rounded-lg ${
+            isDarkMode 
+              ? "bg-gray-900/95 backdrop-blur-md shadow-md" 
+              : (isScrolled ? "bg-white shadow-md" : "bg-gray-900/80 backdrop-blur-md")
+          }`}>
+            <NavLinks isMobile={true} isScrolled={isScrolled} isDarkMode={isDarkMode} />
           </div>
         </div>
       </div>
@@ -62,7 +107,7 @@ const Navbar = () => {
   );
 };
 
-const NavLinks = () => {
+const NavLinks = ({ isMobile = false, isScrolled = false, isDarkMode = false }) => {
   const location = useLocation();
   const links = [
     { to: "/", label: "Home" },
@@ -72,20 +117,28 @@ const NavLinks = () => {
   ];
 
   return (
-    <>
+    <div className={`${isMobile ? "flex flex-col space-y-4 px-4" : "flex space-x-8"}`}>
       {links.map(({ to, label }) => (
         <Link
           key={to}
           to={to}
           className={`
-            text-gray-200 hover:text-primary
-            ${location.pathname === to ? "text-primary font-semibold" : ""}
+            relative group ${isMobile ? "py-2" : ""}
+            ${location.pathname === to 
+              ? `font-semibold ${isDarkMode ? "text-primary" : "text-primary"}` 
+              : isDarkMode
+                ? `${isScrolled || isMobile ? "text-gray-300" : "text-white"} hover:text-primary transition-colors duration-300` 
+                : `${isScrolled ? "text-text" : "text-white"} hover:text-primary transition-colors duration-300`
+            }
           `}
         >
           {label}
+          <span className={`absolute -bottom-1 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300 ${
+            location.pathname === to ? "w-full" : "w-0"
+          }`}></span>
         </Link>
       ))}
-    </>
+    </div>
   );
 };
 

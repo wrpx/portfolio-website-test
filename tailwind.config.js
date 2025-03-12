@@ -4,15 +4,36 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
         primary: '#2563eb',
         secondary: '#1e40af',
-        text: '#1f2937',
-        'light-text': '#6b7280',
-        background: '#ffffff',
-        'section-bg': '#f3f4f6',
+        text: {
+          DEFAULT: '#1f2937',
+          dark: '#e2e8f0',
+        },
+        'light-text': {
+          DEFAULT: '#6b7280', 
+          dark: '#94a3b8',
+        },
+        background: {
+          DEFAULT: '#ffffff',
+          dark: '#0f172a',
+        },
+        'section-bg': {
+          DEFAULT: '#f3f4f6',
+          dark: '#1e293b',
+        },
+        'card-bg': {
+          DEFAULT: '#ffffff',
+          dark: '#1e293b',
+        },
+        'card-border': {
+          DEFAULT: '#e5e7eb',
+          dark: '#334155',
+        },
       },
       fontFamily: {
         sans: ['Poppins', 'sans-serif'],
@@ -72,10 +93,12 @@ export default {
       boxShadow: {
         'inner-lg': 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)',
         'soft': '0 2px 15px rgba(0, 0, 0, 0.05)',
+        'soft-dark': '0 2px 15px rgba(0, 0, 0, 0.2)',
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-dots': 'radial-gradient(circle, #e5e7eb 1px, transparent 1px)',
+        'gradient-dots-dark': 'radial-gradient(circle, #475569 1px, transparent 1px)',
       },
       backgroundSize: {
         'dots-sm': '20px 20px',
