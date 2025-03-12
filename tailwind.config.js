@@ -12,11 +12,11 @@ export default {
         secondary: '#1e40af',
         text: {
           DEFAULT: '#1f2937',
-          dark: '#e2e8f0',
+          dark: '#f3f4f6',
         },
         'light-text': {
           DEFAULT: '#6b7280', 
-          dark: '#94a3b8',
+          dark: '#cbd5e1',
         },
         background: {
           DEFAULT: '#ffffff',
